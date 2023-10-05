@@ -51,5 +51,7 @@ button {
     border: none;
     outline: none;
     color: #fff;
-    
+    font-size: 20px;
+    padding: 16px;
+    cursor: pointer;
 }

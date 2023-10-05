@@ -71,5 +71,9 @@ button:hover{
 
 .digits{
     display: flex;
+    flex-wrap: wrap;
+}
+
+.digits button{
     
 }

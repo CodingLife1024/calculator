@@ -7,14 +7,25 @@ function App() {
   const ops = ["/", "*", "+", "-", "."];
 
   const updateCalc = value => {
+    if (
+      ops.includes(value) && calc === '' ||
+      ops.includes(value) && ops.includes(calc.slice(-1))
+    ){
+      return;
+    }
+
     setCalc(calc + value);
+
+    if(!ops.includes(value)){
+      setResult(eval(calc + value).toString());
+    }
   }
 
   const createDigits = () => {
     const digits = [];
     for (let i = 1; i < 10; i++){
       digits.push(
-        <button key = {i}>{i}</button>
+        <button onClick={() => updateCalc(i.toString())} key = {i}>{i}</button>
       )
     }
 
@@ -30,10 +41,10 @@ function App() {
         </div>
 
         <div className="operators">
-          <button>/</button>
-          <button>*</button>
-          <button>+</button>
-          <button>-</button>
+          <button onClick={() => updateCalc('/')}>/</button>
+          <button onClick={() => updateCalc('*')}>*</button>
+          <button onClick={() => updateCalc('+')}>+</button>
+          <button onClick={() => updateCalc('-')}>-</button>
 
           <button>DEL</button>
         </div>
@@ -42,8 +53,8 @@ function App() {
 
           { createDigits() }
 
-          <button>0</button>
-          <button>.</button>
+          <button onClick={() => updateCalc('0')}>0</button>
+          <button onClick={() => updateCalc('.')}>.</button>
           <button>=</button>
 
         </div>
